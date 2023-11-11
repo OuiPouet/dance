@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dance</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="welcome">
+        <h1>Oui Pouet vous invite â sa fête !</h1>
+        <h2>Rejoindre la fête !</h2>
+    </div>
+    <div class="outside-img">
+        <img src="./house-lights.png" id="oui">
+    </div>
+    <div class="inside-lights"></div>
+    <div class="door"></div>
+    <div class="exit"></div>
+    <div class="dance">
+        <img src="./1.png" id="toto">
+    </div>
+    <div class="dance">
+        <img src="./2.png" id="louis">
+    </div>
+    <div class="dance">
+        <img src="./3.png" id="micka">
+    </div>
+    <div class="dance">
+        <img src="./4.png" id="cedric">
+    </div>
+    <div class="dance">
+        <img src="./5.png" id="esteban">
+    </div>
+    <div class="dance">
+        <img src="./6.png" id="tilian">
+    </div>
+    <div class="dance">
+        <img src="./7.png" id="mateo">
+    </div>
+    <div class="dance">
+        <img src="./8.png" id="luca">
+    </div>
+</body>
+<script>
+    var hue = 1000;
+    var outside = new Audio('outside.mp3');
+    var inside = new Audio('inside.mp3');
+    var isFete = false;
+    document.querySelector('h2').addEventListener('click', function(){
+        document.querySelector('body').style.backgroundImage = 'url("./house.png")';
+        document.querySelector('.welcome').style.display = 'none';
+        document.querySelector('.outside-img').style.display = 'unset';
+        inside.volume = 0;
+        outside.volume = 0.5;
+        outside.play();
+        inside.play();
+        outside.loop = true;
+        inside.loop = true;
+        
+        // Call the function every 1000 milliseconds (1 second)
+        const intervalId = setInterval(() => changeHue('#oui'), 364);
+    });
+    
+    document.querySelector('.door').addEventListener('click', function(){
+        document.querySelector('body').style.backgroundImage = 'url("./inside.png")';
+        document.querySelector('.outside-img').style.display = 'none';
+        document.querySelector('.door').style.display = 'none';
+        document.querySelector('.inside-lights').style.display = 'unset';
+        inside.volume = 1;
+        outside.volume = 0;
+        document.querySelector('body').style.backgroundImage = 'url("./inside.jpg")';
+        if(isFete == false){
+        const intervalId2 = setInterval(() => changeHue('.inside-lights'), 364);
+        }
+            isFete = true;
+            document.querySelectorAll('.dance').forEach(function(dance){
+                dance.style.display = 'unset';
+            });
+    });
+
+    document.querySelector('.exit').addEventListener('click', function(){
+        document.querySelector('body').style.backgroundImage = 'url("./house.png")';
+        document.querySelector('.outside-img').style.display = 'unset';
+        document.querySelector('.door').style.display = 'unset';
+        document.querySelector('.inside-lights').style.display = 'none';
+        inside.volume = 0;
+        outside.volume = 0.5;
+        document.querySelectorAll('.dance').forEach(function(dance){
+            dance.style.display = 'none';
+        });
+    });
+
+    function changeHue(selector) {
+        document.querySelector(selector).style.filter = "hue-rotate(" + hue + "deg)";
+        hue += 45;
+    }
+</script>
+</html>
