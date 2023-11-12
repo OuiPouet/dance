@@ -171,20 +171,20 @@ h2:hover{
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-61%,31%);
+    transform: translate(-30%,24%);
     z-index: 50;
     animation: esteban 0.364s infinite;
 }
 
 @keyframes esteban {
     0% {
-        transform: translate(-61%,31%);
+        transform: translate(-30%,24%);
     }
     50% {
-        transform: translate(-61%,32%);
+        transform: translate(-30%,25%);
     }
     100% {
-        transform: translate(-61%,31%);
+        transform: translate(-30%,24%);
     }
 }
 
@@ -254,6 +254,29 @@ h2:hover{
     }
     100% {
         transform: translate(246%,62%);
+    }
+}
+
+#tobee{
+    width: 13%;
+    height: 30%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-167%,62%);
+    z-index: 50;
+    animation: tobee 0.364s infinite;
+}
+
+@keyframes tobee {
+    0% {
+        transform: translate(-167%,62%);
+    }
+    50% {
+        transform: translate(-167%,63%);
+    }
+    100% {
+        transform: translate(-167%,62%);
     }
 }
 
