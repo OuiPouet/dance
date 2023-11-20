@@ -44,6 +44,11 @@
     <div class="dance">
         <img src="./9.png" id="tobee">
     </div>
+    <div class="fish">
+    </div>
+    <div class="bubbles">
+        <img src="./bubbles/0025.png" id="bubbles">
+    </div>
 </body>
 <script>
     var hue = 1000;
@@ -78,6 +83,7 @@
             document.querySelectorAll('.dance').forEach(function(dance){
                 dance.style.display = 'unset';
             });
+            document.querySelector('.fish').style.display = 'unset';
     });
 
     document.querySelector('.exit').addEventListener('click', function(){
@@ -90,11 +96,43 @@
         document.querySelectorAll('.dance').forEach(function(dance){
             dance.style.display = 'none';
         });
+        document.querySelector('.fish').style.display = 'none';
     });
 
     function changeHue(selector) {
         document.querySelector(selector).style.filter = "hue-rotate(" + hue + "deg)";
         hue += 45;
     }
+
+    document.querySelector('.fish').addEventListener('click', function () {
+        document.querySelector('.fish').style.display = 'none';
+        document.querySelector('.bubbles').style.display = 'unset';
+        inside.volume = 0.1;
+        var bubblesAudio = new Audio('./bubbles.mp3');
+        bubblesAudio.play();
+
+        var i = 1;
+
+        function animateBubbles() {
+            var bubbleSrc = (i < 10) ? './bubbles/000' + i + '.png' : './bubbles/00' + i + '.png';
+            document.querySelector('#bubbles').src = bubbleSrc;
+
+            i++;
+
+            if (i < 50) {
+                requestAnimationFrame(animateBubbles);
+            } else {
+                document.querySelector('.bubbles').style.display = 'none';
+                document.querySelector('.fish').style.display = 'unset';
+                window.location.replace("https://fish.embuscade.tech");
+            }
+        }
+
+        animateBubbles();
+    });
+
+
+
+
 </script>
 </html>
